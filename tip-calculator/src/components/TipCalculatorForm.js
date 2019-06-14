@@ -4,26 +4,26 @@ import { Button, Form, FormControl, Row, Col } from 'react-bootstrap';
 class TipCalculatorForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             BillTotal: 0,
             TipPercentage: 0,
-            People:1,
+            People: 1,
             TipTotal: 0
-            };
-         this.handleBillTotalChange = this.handleBillTotalChange.bind(this);
-         this.handleTipPercentChange = this.handleTipPercentChange.bind(this);
-         this.handlePeopleChange = this.handlePeopleChange.bind(this);
-         this.handleSubmit = this.handleSubmit.bind(this);
+        };
+        this.handleBillTotalChange = this.handleBillTotalChange.bind(this);
+        this.handleTipPercentChange = this.handleTipPercentChange.bind(this);
+        this.handlePeopleChange = this.handlePeopleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleBillTotalChange(event) {
-        this.setState({ 
+        this.setState({
             BillTotal: event.target.value,
         });
     }
 
     handleTipPercentChange(event) {
-        this.setState({ 
+        this.setState({
             TipPercentage: event.target.value,
         });
     }
@@ -37,26 +37,30 @@ class TipCalculatorForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const persons = parseInt(this.state.People);
-        const tip = parseFloat(this.state.TipPercentage);
-        const BillTotal = parseFloat(this.state.BillTotal);
-        let results;
-        if(persons > 1) {
-            function calulateMultiplePersonTip (people,tip,total) {
-                return ((total/tip)/people);
+        let persons = parseInt(this.state.People);
+        let tip = parseInt(this.state.TipPercentage);
+        let BillTotal = parseFloat(this.state.BillTotal);
+
+        function getPercantage(PercentFor, PercentOf) {
+            return Math.floor(PercentFor / PercentOf * 100);
+        }
+
+        if (persons > 1) {
+            function calulateMultiplePersonTip(people, tipPercent, total) {
+                return (getPercantage(tipPercent,total))/people;
             }
-            let tipTotal = calulateMultiplePersonTip(persons,tip,BillTotal);
+            let tipTotal = calulateMultiplePersonTip(persons, tip, BillTotal);
+
             alert('The tip total comes out to $ ' + tipTotal + ' per person');
 
-        } else 
-        if (persons === 1){
-            function calulateSinglePersonTip (tip,total) {
-                return ((total/tip));
+        } else
+            if (persons === 1) {
+                function calulateSinglePersonTip(tipPercent, total) {
+                    return (getPercantage(tipPercent, total));
+                }
+                let tipTotal = calulateSinglePersonTip(tip, BillTotal);
+                alert('Your tip total comes out to $ ' + tipTotal);
             }
-            let tipTotal = calulateSinglePersonTip(tip,BillTotal);
-            alert('Your tip total comes out to $ ' + tipTotal);
-        }
-   
     }
 
     render() {
@@ -67,24 +71,24 @@ class TipCalculatorForm extends React.Component {
                     <Form.Group as={Row} controlId="formHorizontal">
                         <Form.Label column sm={2}>
                             Bill Total: $ {this.state.BillTotal}
-                    </Form.Label>
+                        </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="float" placeholder="$" value={this.state.BillTotal.value} onChange={this.handleBillTotalChange} />
-                        </Col> 
+                            <Form.Control type="float" placeholder="$" value={this.state.BillTotal.value} onChange={this.handleBillTotalChange} required />
+                        </Col>
                         <Form.Label column sm={2}>
-                        Tip Percentage:  {this.state.TipPercentage} %
+                            Tip Percentage:  {this.state.TipPercentage} %
                     </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="number" placeholder="%" value={this.state.TipPercentage.value} onChange={this.handleTipPercentChange} />
-                        </Col>  
+                            <Form.Control type="number" placeholder="%" value={this.state.TipPercentage.value} onChange={this.handleTipPercentChange} required />
+                        </Col>
                         <Form.Label column sm={2}>
                             Number of People {this.state.People}
-                    </Form.Label>
+                        </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="number" placeholder="1" default={1} value={this.state.People.value} onChange={this.handlePeopleChange} />
-                        </Col> 
+                            <Form.Control type="number" placeholder="1" default={1} value={this.state.People.value} onChange={this.handlePeopleChange} required />
+                        </Col>
                     </Form.Group>
-                     <Button type="submit" value="Submit" > Submit</Button>
+                    <Button type="submit" value="Submit" > Submit</Button>
                 </Form>
             </div>
         );
