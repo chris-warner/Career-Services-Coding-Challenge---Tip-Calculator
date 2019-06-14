@@ -7,7 +7,8 @@ class TipCalculatorForm extends React.Component {
         this.state = { 
             BillTotal: 0,
             TipPercentage: 0,
-            People:1
+            People:1,
+            TipTotal: 0
             };
          this.handleBillTotalChange = this.handleBillTotalChange.bind(this);
          this.handleTipPercentChange = this.handleTipPercentChange.bind(this);
@@ -31,12 +32,31 @@ class TipCalculatorForm extends React.Component {
         this.setState({
             People: event.target.value
         });
-    }l
+    }
 
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
         event.preventDefault();
+        const persons = parseInt(this.state.People);
+        const tip = parseFloat(this.state.TipPercentage);
+        const BillTotal = parseFloat(this.state.BillTotal);
+        let results;
+        if(persons > 1) {
+            function calulateMultiplePersonTip (people,tip,total) {
+                return ((total/tip)/people);
+            }
+            let tipTotal = calulateMultiplePersonTip(persons,tip,BillTotal);
+            alert('The tip total comes out to $ ' + tipTotal + ' per person');
+
+        } else 
+        if (persons === 1){
+            function calulateSinglePersonTip (tip,total) {
+                return ((total/tip));
+            }
+            let tipTotal = calulateSinglePersonTip(tip,BillTotal);
+            alert('Your tip total comes out to $ ' + tipTotal);
+        }
+   
     }
 
     render() {
@@ -49,7 +69,7 @@ class TipCalculatorForm extends React.Component {
                             Bill Total: $ {this.state.BillTotal}
                     </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="number" placeholder="$" value={this.state.BillTotal.value} onChange={this.handleBillTotalChange} />
+                            <Form.Control type="float" placeholder="$" value={this.state.BillTotal.value} onChange={this.handleBillTotalChange} />
                         </Col> 
                         <Form.Label column sm={2}>
                         Tip Percentage:  {this.state.TipPercentage} %
