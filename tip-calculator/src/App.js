@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div style={AppDivStyle} className="App">
     <NavbarComponent title={'Tip Calculator'} />
     <JumbotronComponent />
     <p style={descriptionP}>Tip Calculator is a simple application that will help calculate a tip at a restaurant for your server.</p>
@@ -16,12 +16,14 @@ function App() {
 }
 
 const descriptionP = {
-  marginLeft:'12px',
-  marginRight:'12px'
+  marginLeft:'18px',
+  marginRight:'18px'
 }
-const navStyle = {
-  //height:'80px',
-  backgroundColor:'blue'
+
+const AppDivStyle = {
+  maxWidth:'900px',
+  display: 'block',
+  margin:'auto'
 }
 
 export default App;

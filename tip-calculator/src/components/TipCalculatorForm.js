@@ -7,7 +7,7 @@ class TipCalculatorForm extends React.Component {
         this.state = {
             BillTotal: 0,
             TipPercentage: 0,
-            People: 1,
+            People: 0,
             TipTotal: 0
         };
         this.handleBillTotalChange = this.handleBillTotalChange.bind(this);
@@ -67,30 +67,44 @@ class TipCalculatorForm extends React.Component {
             <div style={TipCalculatorFormDivStyle}>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group as={Row} controlId="formHorizontal">
-                        <Form.Label column sm={2}>
+
+                        <div style={formDivStyle}>
+                        <Form.Label column sm={4}>
                             Bill Total: $ {this.state.BillTotal}
                         </Form.Label>
-                        <Col sm={10}>
-                            <Form.Control type="float" placeholder="$" value={this.state.BillTotal.value} onChange={this.handleBillTotalChange} min="0" required />
+                        <Col sm={12}>
+                            <Form.Control type="float" placeholder="Bill Total" value={this.state.BillTotal.value} onChange={this.handleBillTotalChange} min="1" required />
                         </Col>
-                        <Form.Label column sm={2}>
-                            Tip Percentage:  {this.state.TipPercentage} %
+                        </div>
+
+                        <div style={formDivStyle}>
+                        <Form.Label column sm={4}>
+                            Tip:  {this.state.TipPercentage} %
                     </Form.Label>
-                        <Col sm={10}>
-                            <Form.Control type="number" placeholder="2%" value={this.state.TipPercentage.value} onChange={this.handleTipPercentChange} min="0" required />
+                        <Col sm={12}>
+                            <Form.Control type="number" placeholder="Tip Percentage" value={this.state.TipPercentage.value} onChange={this.handleTipPercentChange} min="1" required />
                         </Col>
-                        <Form.Label column sm={2}>
-                            Number of People {this.state.People}
+
+                        </div>
+                        <div style={formDivStyle}>
+                        <Form.Label column sm={4}>
+                            People: {this.state.People}
                         </Form.Label>
-                        <Col sm={10}>
-                            <Form.Control type="number" placeholder="1" default={1} value={this.state.People.value} onChange={this.handlePeopleChange} min="1" required />
+                        <Col sm={12}>
+                            <Form.Control type="number" placeholder="Number of people"  value={this.state.People.value} onChange={this.handlePeopleChange} min="1" required />
                         </Col>
+                        </div>
                     </Form.Group>
-                    <Button type="submit" value="Submit" > Submit</Button>
+                    <Button type="submit" value="Submit" > Calculate</Button>
                 </Form>
             </div>
         );
     }
+}
+
+const formDivStyle = {
+marginTop:'8px',
+width:'100%'
 }
 
 const TipCalculatorFormDivStyle = {
