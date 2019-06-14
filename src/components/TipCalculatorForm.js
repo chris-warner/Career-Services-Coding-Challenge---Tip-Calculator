@@ -39,13 +39,17 @@ class TipCalculatorForm extends React.Component {
         let persons = parseInt(this.state.People);
         let tip = parseFloat(this.state.TipPercentage);
         let BillTotal = parseFloat(this.state.BillTotal);
-        function CalculateThePercentage(num, per) {
-            return (num / 100) * per;
+        
+        function CalculateThePercentage(n, p) {
+            if (persons === 1){
+            return (n / 100) * p;
+            } else
+            if(persons > 1) {
+                return ((n / 100) * p)/persons;
+            }
         }
 
         let total = CalculateThePercentage(BillTotal, tip)
-        //  total = Math.round(total * 100) / 100;
-
         total = total.toFixed(2);
 
         if (persons > 1){
@@ -69,7 +73,7 @@ class TipCalculatorForm extends React.Component {
                                 Bill Total: $ {this.state.BillTotal}
                             </Form.Label>
                             <Col sm={12}>
-                                <Form.Control type="number" placeholder="Bill Total" value={this.state.BillTotal.value} onChange={this.handleBillTotalChange} min="1" required />
+                                <Form.Control type="float" placeholder="Bill Total" value={this.state.BillTotal.value} onChange={this.handleBillTotalChange} min="1" required />
                             </Col>
                         </div>
 
