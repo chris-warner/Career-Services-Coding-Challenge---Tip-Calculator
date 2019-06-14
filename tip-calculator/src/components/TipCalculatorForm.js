@@ -5,14 +5,24 @@ class TipCalculatorForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            TipTotal: 0,
+            BillTotal: 0,
+            TipPercentage: 0,
             };
-         this.handleChange = this.handleChange.bind(this);
+         this.handleBillTotalChange = this.handleBillTotalChange.bind(this);
+         this.handleTipPercentChange = this.handleTipPercentChange.bind(this);
          this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({ TipTotal: '$' + event.target.value });
+    handleBillTotalChange(event) {
+        this.setState({ 
+            BillTotal: event.target.value,
+        });
+    }
+
+    handleTipPercentChange(event) {
+        this.setState({ 
+            TipPercentage: event.target.value,
+        });
     }
 
 
@@ -26,13 +36,19 @@ class TipCalculatorForm extends React.Component {
             <div style={TipCalculatorFormDivStyle}>
                 <h1>Tip Calculator </h1>
                 <Form onSubmit={this.handleSubmit}>
-                    <Form.Group as={Row} controlId="formHorizontalEmail">
+                    <Form.Group as={Row} controlId="formHorizontal">
                         <Form.Label column sm={2}>
-                            Bill Total: ${this.state.TipTotal}
+                            Bill Total: $ {this.state.BillTotal}
                     </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="number" placeholder="$" value={this.state.TipTotal.value} onChange={this.handleChange} />
-                        </Col>
+                            <Form.Control type="number" placeholder="$" value={this.state.BillTotal.value} onChange={this.handleBillTotalChange} />
+                        </Col> 
+                        <Form.Label column sm={2}>
+                        Tip Percentage:  {this.state.TipPercentage} %
+                    </Form.Label>
+                        <Col sm={10}>
+                            <Form.Control type="number" placeholder="%" value={this.state.TipPercentage.value} onChange={this.handleTipPercentChange} />
+                        </Col>  
                     </Form.Group>
                     {/* <Form.Button type="submit" value="Submit" /> */}
                 </Form>
