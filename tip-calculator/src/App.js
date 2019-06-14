@@ -5,11 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <nav style={navStyle}>
-        <ul>
-          <il>Tip Calculator</il>
-        </ul>
-      </nav>
+    <NavbarComponent title={'Tip Calculator'} />
     </div>
   );
 }
