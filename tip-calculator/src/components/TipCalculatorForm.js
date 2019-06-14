@@ -73,7 +73,7 @@ class TipCalculatorForm extends React.Component {
                             Bill Total: $ {this.state.BillTotal}
                         </Form.Label>
                         <Col sm={12}>
-                            <Form.Control type="float" placeholder="Bill Total" value={this.state.BillTotal.value} onChange={this.handleBillTotalChange} min="1" required />
+                            <Form.Control type="number" placeholder="Bill Total" value={this.state.BillTotal.value} onChange={this.handleBillTotalChange} min="1" required />
                         </Col>
                         </div>
 
