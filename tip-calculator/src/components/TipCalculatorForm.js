@@ -7,9 +7,11 @@ class TipCalculatorForm extends React.Component {
         this.state = { 
             BillTotal: 0,
             TipPercentage: 0,
+            People:1
             };
          this.handleBillTotalChange = this.handleBillTotalChange.bind(this);
          this.handleTipPercentChange = this.handleTipPercentChange.bind(this);
+         this.handlePeopleChange = this.handlePeopleChange.bind(this);
          this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -24,6 +26,12 @@ class TipCalculatorForm extends React.Component {
             TipPercentage: event.target.value,
         });
     }
+
+    handlePeopleChange(event) {
+        this.setState({
+            People: event.target.value
+        });
+    }l
 
 
     handleSubmit(event) {
@@ -49,8 +57,14 @@ class TipCalculatorForm extends React.Component {
                         <Col sm={10}>
                             <Form.Control type="number" placeholder="%" value={this.state.TipPercentage.value} onChange={this.handleTipPercentChange} />
                         </Col>  
+                        <Form.Label column sm={2}>
+                            Number of People {this.state.People}
+                    </Form.Label>
+                        <Col sm={10}>
+                            <Form.Control type="number" placeholder="1" default={1} value={this.state.People.value} onChange={this.handlePeopleChange} />
+                        </Col> 
                     </Form.Group>
-                    {/* <Form.Button type="submit" value="Submit" /> */}
+                     <Button type="submit" value="Submit" > Submit</Button>
                 </Form>
             </div>
         );
