@@ -7,8 +7,8 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-    <JumbotronComponent />
     <NavbarComponent title={'Tip Calculator'} />
+    <JumbotronComponent />
     <TipCalculatorForm  />
     </div>
   );
