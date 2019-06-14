@@ -34,7 +34,6 @@ class TipCalculatorForm extends React.Component {
         });
     }
 
-
     handleSubmit(event) {
         event.preventDefault();
         let persons = parseInt(this.state.People);
@@ -47,7 +46,7 @@ class TipCalculatorForm extends React.Component {
 
         if (persons > 1) {
             function calulateMultiplePersonTip(people, tipPercent, total) {
-                return (getPercantage(tipPercent,total))/people;
+                return (getPercantage(tipPercent, total)) / people;
             }
             let tipTotal = calulateMultiplePersonTip(persons, tip, BillTotal);
 
@@ -66,26 +65,25 @@ class TipCalculatorForm extends React.Component {
     render() {
         return (
             <div style={TipCalculatorFormDivStyle}>
-                <h1>Tip Calculator </h1>
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Group as={Row} controlId="formHorizontal">
                         <Form.Label column sm={2}>
                             Bill Total: $ {this.state.BillTotal}
                         </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="float" placeholder="$" value={this.state.BillTotal.value} onChange={this.handleBillTotalChange} required />
+                            <Form.Control type="float" placeholder="$" value={this.state.BillTotal.value} onChange={this.handleBillTotalChange} min="0" required />
                         </Col>
                         <Form.Label column sm={2}>
                             Tip Percentage:  {this.state.TipPercentage} %
                     </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="number" placeholder="%" value={this.state.TipPercentage.value} onChange={this.handleTipPercentChange} required />
+                            <Form.Control type="number" placeholder="2%" value={this.state.TipPercentage.value} onChange={this.handleTipPercentChange} min="0" required />
                         </Col>
                         <Form.Label column sm={2}>
                             Number of People {this.state.People}
                         </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="number" placeholder="1" default={1} value={this.state.People.value} onChange={this.handlePeopleChange} required />
+                            <Form.Control type="number" placeholder="1" default={1} value={this.state.People.value} onChange={this.handlePeopleChange} min="1" required />
                         </Col>
                     </Form.Group>
                     <Button type="submit" value="Submit" > Submit</Button>
