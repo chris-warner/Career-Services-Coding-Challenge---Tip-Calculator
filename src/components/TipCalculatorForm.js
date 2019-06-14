@@ -47,8 +47,14 @@ class TipCalculatorForm extends React.Component {
         //  total = Math.round(total * 100) / 100;
 
         total = total.toFixed(2);
+
+        if (persons > 1){
         alert('The tip total comes out to $ ' + total + ' per person');
-        //alert('Your tip total comes out to $ ' + tipTotal);
+        }
+        else 
+        if(persons ===1 ){
+        alert('Your tip total comes out to $ ' + total);
+        }
     }
 
 

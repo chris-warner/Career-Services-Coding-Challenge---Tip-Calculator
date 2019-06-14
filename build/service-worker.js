@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Career-Services-Coding-Challenge---Tip-Calculator/precache-manifest.b928c6aac7e7a58d25f948551ac0d449.js"
+  "/Career-Services-Coding-Challenge---Tip-Calculator/precache-manifest.f4ff2e18accb336d688dd8de5f1c8507.js"
 );
 
 self.addEventListener('message', (event) => {
