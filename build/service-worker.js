@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Career-Services-Coding-Challenge---Tip-Calculator/precache-manifest.16fbe76b2d6d69fe9dd6e1294a2ed46b.js"
+  "/Career-Services-Coding-Challenge---Tip-Calculator/precache-manifest.653755af8b54dc00926904c9103c3e42.js"
 );
 
 self.addEventListener('message', (event) => {
@@ -35,5 +35,5 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/Career-Services-Coding-Challenge---Tip-Calculator/index.html"), {
   
-  blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
+  blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
