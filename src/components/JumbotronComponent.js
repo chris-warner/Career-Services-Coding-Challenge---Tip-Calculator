@@ -17,7 +17,7 @@ const jumbostronStyle = {
     color: 'white',
     marginLeft:'20px',
     marginRight:'20px',
-    marginTop:'16px'
+    marginTop:'32px'
 }   
 
 export default JumbotronComponent;
